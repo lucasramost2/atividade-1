@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validação javascript cadastro</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <label for="nome">nome</label>
+    <input type="text" name="nome" id="nome" required>
+    <br>
+    <label for="sobrenome">sobrenome</label>
+    <input type="text" name="sobrenome" id="sobrenome" required>
+    <br>
+    <label for="nascimento">data de nascimento</label>
+    <input type="date" name="nascimento" id="nasimento" required>
+    <br>
+    <label for="CPF">CPF</label>
+    <input type="number" name="CPF" id="CPF" required>
+    <br>
+    <label for="telefone">telefone</label>
+    <input type="number" name="telefone" required>
+    <br>
+    <label for="email"> email</label>
+    <input type="email" name="email" id="email" required>
+    <br>
+    <button onclick="validarDados()">enviar</button>
+</body>
+</html>
