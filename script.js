@@ -1,50 +1,60 @@
-function validarDados() {
-    let nome = document.getElementById('nome')
-    if(nome.value !="") {
-        console.log(nome.value)
-    } else{
-        alert('por favor insira seu nome')
+document.getElementById('formOrdemServico').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nomeCliente = document.getElementById('nomeCliente');
+    const telefone = document.getElementById('telefone');
+    const email = document.getElementById('email');
+    const cpf = document.getElementById('cpf');
+    const veiculoAno = document.getElementById('veiculoAno');
+
+    let valid = true;
+
+    if (nomeCliente.value.trim() === '') {
+        alert('Por favor, preencha o nome do cliente');
+        valid = false;
     }
 
-    let sobrenome = document.getElementById('sobrenome')
-    if(sobrenome.value !="") {
-        console.log(sobrenome.value)
-    } else{
-        alert('por favor insira seu sobrenome')
+    const telefoneRegex = /^\d{11}$/;
+    if (!telefoneRegex.test(telefone.value)) {
+        alert('Telefone deve conter 11 dígitos (DDD + número)');
+        valid = false;
     }
 
-
-  
-        let nascimento = document.getElementById('nascimento')
-        if(nascimento.value !="") {
-            console.log(nascimento.value)
-        } else{
-            alert('por favor insira sua data de nascimneto')
+    if (email.value !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            alert('Por favor, insira um e-mail válido');
+            valid = false;
         }
-    
+    }
 
-        
-            let CPF = document.getElementById('CPF')
-            if(CPF.value !="") {
-                console.log(CPF.value)
-            } else{
-                alert('por favor insira seu CPF')
-            }
-        
+/*  Opção 1
 
-            let TELEFONE = document.getElementById('TELEFONE')
-            if(TELEFONE.value !="") {
-                console.log(TELEFONE.value)
-            } else{
-                alert('por favor insira seu TELEFONE')
-            }
-        
+    let cpfNumeros = cpf.value.replace('.', '');
+    cpfNumeros = cpfNumeros.replace('.','');
+    cpfNumeros = cpfNumeros.replace('-','');
 
-            let EMAIL = document.getElementById('EMAIL')
-            if(EMAILF.value !="") {
-                console.log(EMAIL.value)
-            } else{
-                alert('por favor insira seu EMAIL')
-            }
-        
-}
+    const cpfRegex = /^\d{11}$/;
+    if (!cpfRegex.test(cpfNumeros)) {
+        alert('Por favor, insira um CPF em um formato válido');
+        valid = false;
+    }*/
+
+/*  Opção 2
+
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    if (!cpfRegex.test(cpf.value)) {
+        alert('Por favor, insira um CPF em um formato válido');
+        valid = false;
+    } */
+
+    if (veiculoAno.value < 1900 || veiculoAno.value > new Date().getFullYear()) {
+        alert('Ano do veículo deve ser entre 1900 e o ano atual');
+        valid = false;
+    }
+
+    if (valid) {
+        alert('Ordem de serviço enviada com sucesso!');
+        this.reset();
+    }
+});
